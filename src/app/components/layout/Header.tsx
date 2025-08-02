@@ -36,8 +36,8 @@ const Header = () => {
       </div>
 
       {/* Floating navbar - overlap 50/50 */}
-      <div className="relative z-40 h-[100px]">
-        <div className="absolute top-[100px] left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full">
+      <div className="relative z-40 h-[80px]">
+        <div className="absolute top-[30px] left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full">
           <Navbar />
         </div>
         {/* Observer target */}
