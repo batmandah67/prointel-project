@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Navbar from "./Navbar";
-import TopBar from "./TopBar";
+
 import StickyNavbar from "./StickyNavbar";
+
+import TopBar from "./TopBar";
+import Navbar from "./Navbar";
 
 const Header = () => {
   const [showSticky, setShowSticky] = useState(false);
