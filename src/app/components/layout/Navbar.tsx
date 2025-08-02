@@ -38,22 +38,16 @@ export default function Navbar() {
             </li>
             {showPagesDropdown && (
               <ul className="absolute top-7 left-0 w-48 bg-white text-[#040f2e] shadow-none rounded z-50">
-                {[
-                  "ABOUT US",
-                  "OUR TEAM",
-                  "FAQ'S",
-                  "404",
-                  "SHOP",
-                  "SHOP DETAILS",
-                  "THIRD LEVEL MENU",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="px-4 py-2 cursor-pointer hover-slide-effect"
-                  >
-                    <span>{item}</span>
-                  </li>
-                ))}
+                {["ABOUT US", "OUR TEAM", "FAQ'S", "SHOP", "SHOP DETAILS"].map(
+                  (item) => (
+                    <li
+                      key={item}
+                      className="px-4 py-2 cursor-pointer hover-slide-effect"
+                    >
+                      <span>{item}</span>
+                    </li>
+                  )
+                )}
               </ul>
             )}
           </div>
@@ -143,12 +137,17 @@ export default function Navbar() {
             </li>
             {showBlogDropdown && (
               <ul className="absolute top-7 left-0 w-56 bg-white text-[#040f2e] shadow-lg rounded z-50">
-                {["BLOG LIST", "BLOG GRID", "BLOG DETAILS"].map((item) => (
-                  <li
-                    key={item}
-                    className="px-4 py-2 cursor-pointer hover-slide-effect"
-                  >
-                    <span>{item}</span>
+                {[
+                  { label: "BLOG LIST", href: "/blog" },
+                  { label: "BLOG GRID", href: "/blog/grid" },
+                  { label: "BLOG DETAILS", href: "/blog/example-post" },
+                ].map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href}>
+                      <div className="hover-slide-effect px-4 py-2 cursor-pointer">
+                        <span>{item.label}</span>
+                      </div>
+                    </Link>
                   </li>
                 ))}
               </ul>
