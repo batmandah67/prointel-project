@@ -3,11 +3,11 @@ import Image from "next/image";
 import { posts } from "../blogData";
 import BlogBanner from "../components/BlogBanner";
 
-interface Props {
+export default async function BlogDetailPage({
+  params,
+}: {
   params: { id: string };
-}
-
-export default async function BlogDetailPage({ params }: Props) {
+}) {
   const postId = parseInt(params.id, 10);
   if (isNaN(postId)) return notFound();
 
