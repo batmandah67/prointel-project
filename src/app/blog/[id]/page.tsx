@@ -3,13 +3,20 @@ import Image from "next/image";
 import { posts } from "../blogData";
 import BlogBanner from "../components/BlogBanner";
 
-export default function BlogDetailPage({ params }: { params: { id: string } }) {
-  const postId = parseInt(params.id, 10);
-  const post = posts.find((p) => p.id === postId);
+type Props = {
+  params: {
+    id: string;
+  };
+};
 
-  if (!post || isNaN(postId)) {
-    notFound();
-  }
+// ✅ АСИНХРОН БИШ БОЛГОСОН (async устгасан)
+export default function BlogDetailPage({ params }: Props) {
+  const postId = parseInt(params.id, 10);
+
+  if (isNaN(postId)) return notFound();
+
+  const post = posts.find((p) => p.id === postId);
+  if (!post) return notFound();
 
   return (
     <div>
