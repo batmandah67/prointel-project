@@ -8,11 +8,7 @@ interface Props {
 }
 
 export default async function BlogDetailPage({ params }: Props) {
-  const id = params?.id;
-
-  if (!id) return notFound();
-
-  const postId = Number(id);
+  const postId = parseInt(params.id, 10);
   if (isNaN(postId)) return notFound();
 
   const post = posts.find((p) => p.id === postId);
