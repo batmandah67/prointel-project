@@ -3,21 +3,11 @@ import Image from "next/image";
 import { posts } from "../blogData";
 import BlogBanner from "../components/BlogBanner";
 
-// зөв PageProps типийг ашиглана
-type PageProps = {
-  params: {
-    id: string;
-  };
-};
-
-export default function BlogDetailPage({ params }: PageProps) {
+export default function BlogDetailPage({ params }: { params: { id: string } }) {
   const postId = parseInt(params.id, 10);
-  if (isNaN(postId)) {
-    notFound();
-  }
-
   const post = posts.find((p) => p.id === postId);
-  if (!post) {
+
+  if (!post || isNaN(postId)) {
     notFound();
   }
 
