@@ -3,16 +3,23 @@ import Image from "next/image";
 import { posts } from "../blogData";
 import BlogBanner from "../components/BlogBanner";
 
-export default async function BlogDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+// зөв PageProps типийг ашиглана
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default function BlogDetailPage({ params }: PageProps) {
   const postId = parseInt(params.id, 10);
-  if (isNaN(postId)) return notFound();
+  if (isNaN(postId)) {
+    notFound();
+  }
 
   const post = posts.find((p) => p.id === postId);
-  if (!post) return notFound();
+  if (!post) {
+    notFound();
+  }
 
   return (
     <div>
