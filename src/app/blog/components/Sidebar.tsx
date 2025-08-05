@@ -34,7 +34,7 @@ export default function Sidebar() {
           {/* Post 1 */}
           <li className="flex items-start gap-3">
             <Image
-              src="/images/thumb1.jpg"
+              src="/globe.svg"
               alt="thumb"
               width={65}
               height={60}
@@ -52,7 +52,7 @@ export default function Sidebar() {
           {/* Post 2 */}
           <li className="flex items-start gap-3">
             <Image
-              src="/images/thumb2.jpg"
+              src="/globe.svg"
               alt="thumb"
               width={65}
               height={60}
@@ -70,7 +70,7 @@ export default function Sidebar() {
           {/* Post 3 */}
           <li className="flex items-start gap-3">
             <Image
-              src="/images/thumb3.jpg"
+              src="/globe.svg"
               alt="thumb"
               width={65}
               height={60}
