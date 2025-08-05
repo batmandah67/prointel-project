@@ -14,18 +14,13 @@ import { motion, useInView } from "framer-motion";
 
 const dropdownItems = {
   PAGES: [
-    { label: "ABOUT US" },
+    { label: "ABOUT US", href: "/about" },
     { label: "OUR TEAM" },
     { label: "FAQ'S" },
     { label: "SHOP" },
     { label: "SHOP DETAILS" },
   ],
-  SERVICE: [
-    { label: "SERVICE VERSION ONE" },
-    { label: "SERVICE VERSION TWO" },
-    { label: "SERVICE DETAILS" },
-  ],
-  PORTFOLIO: [{ label: "PROJECT" }, { label: "PROJECT DETAILS" }],
+
   BLOG: [
     { label: "BLOG LIST", href: "/blog" },
     { label: "BLOG GRID", href: "/blog/grid" },
@@ -43,11 +38,8 @@ const StickyNavbar = ({ className = "" }: NavbarProps) => {
   const triggerRef = useRef(null);
   const isFloatingNavOutOfView = !useInView(triggerRef, { margin: "-100px" });
 
-  // Auto-close mobile menu on scroll or resize
   useEffect(() => {
-    const closeMobile = () => {
-      setMobileOpen(false);
-    };
+    const closeMobile = () => setMobileOpen(false);
     window.addEventListener("resize", closeMobile);
     window.addEventListener("scroll", closeMobile);
     return () => {
@@ -61,7 +53,6 @@ const StickyNavbar = ({ className = "" }: NavbarProps) => {
     items: { label: string; href?: string }[]
   ) => {
     const isOpen = openDropdown === title;
-
     return (
       <div
         className="relative"
@@ -120,9 +111,13 @@ const StickyNavbar = ({ className = "" }: NavbarProps) => {
               <li>/</li>
               {renderDropdown("PAGES", dropdownItems.PAGES)}
               <li>/</li>
-              {renderDropdown("SERVICE", dropdownItems.SERVICE)}
+              <li className="hover:text-white/90">
+                <Link href="/service">SERVICE</Link>
+              </li>
               <li>/</li>
-              {renderDropdown("PORTFOLIO", dropdownItems.PORTFOLIO)}
+              <li className="hover:text-white/90">
+                <Link href="/portfolio">PORTFOLIO</Link>
+              </li>
               <li>/</li>
               {renderDropdown("BLOG", dropdownItems.BLOG)}
               <li>/</li>
@@ -183,6 +178,14 @@ const StickyNavbar = ({ className = "" }: NavbarProps) => {
                     </ul>
                   </details>
                 ))}
+
+                <Link href="/service" onClick={() => setMobileOpen(false)}>
+                  SERVICE
+                </Link>
+                <Link href="/portfolio" onClick={() => setMobileOpen(false)}>
+                  PORTFOLIO
+                </Link>
+
                 <Link href="/contact" onClick={() => setMobileOpen(false)}>
                   CONTACT
                 </Link>

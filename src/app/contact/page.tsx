@@ -1,4 +1,4 @@
-import SectionTitle from "@/app/components/SectionTitle";
+import SectionTitle from "@/components/SectionTitle";
 import MapSection from "./components/MapSection";
 import ContactForm from "./components/ContactForm";
 

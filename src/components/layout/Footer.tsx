@@ -95,13 +95,13 @@ export default function Footer() {
             <a href="#about" className="hover:text-white transition">
               About
             </a>
-            <a href="#solutions" className="hover:text-white transition">
+            <a href="/service" className="hover:text-white transition">
               Solutions
             </a>
             <a href="#faq" className="hover:text-white transition">
               FAQ’s
             </a>
-            <a href="#contact" className="hover:text-white transition">
+            <a href="/contact" className="hover:text-white transition">
               Contact
             </a>
           </div>

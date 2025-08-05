@@ -103,7 +103,7 @@ export default function Navbar() {
             </li>
             {showDropdown.pages &&
               renderDropdownItems([
-                { label: "ABOUT US" },
+                { label: "ABOUT US", href: "/about" },
                 { label: "OUR TEAM" },
                 { label: "FAQ'S" },
                 { label: "SHOP" },
@@ -113,38 +113,16 @@ export default function Navbar() {
           <li className="text-white/40">/</li>
 
           {/* SERVICE */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("service")}
-            onMouseLeave={() => handleMouseLeave("service")}
-          >
-            <li className="flex items-center gap-1 cursor-pointer hover:text-white/90">
-              SERVICE <ChevronDown size={14} />
-            </li>
-            {showDropdown.service &&
-              renderDropdownItems([
-                { label: "SERVICE VERSION ONE" },
-                { label: "SERVICE VERSION TWO" },
-                { label: "SERVICE DETAILS" },
-              ])}
-          </div>
+          <li className="hover:text-white/90">
+            <Link href="/service">SERVICE</Link>
+          </li>
+
           <li className="text-white/40">/</li>
 
           {/* PORTFOLIO */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("portfolio")}
-            onMouseLeave={() => handleMouseLeave("portfolio")}
-          >
-            <li className="flex items-center gap-1 cursor-pointer hover:text-white/90">
-              PORTFOLIO <ChevronDown size={14} />
-            </li>
-            {showDropdown.portfolio &&
-              renderDropdownItems([
-                { label: "PROJECT" },
-                { label: "PROJECT DETAILS" },
-              ])}
-          </div>
+          <li className="hover:text-white/90">
+            <Link href="/portfolio">PORTFOLIO</Link>
+          </li>
           <li className="text-white/40">/</li>
 
           {/* BLOG */}
@@ -199,42 +177,47 @@ export default function Navbar() {
           </Link>
 
           {[
-            ...[
-              {
-                label: "PAGES",
-                items: [
-                  "ABOUT US",
-                  "OUR TEAM",
-                  "FAQ'S",
-                  "SHOP",
-                  "SHOP DETAILS",
-                ],
-              },
-              {
-                label: "SERVICE",
-                items: [
-                  "SERVICE VERSION ONE",
-                  "SERVICE VERSION TWO",
-                  "SERVICE DETAILS",
-                ],
-              },
-              {
-                label: "PORTFOLIO",
-                items: ["PROJECT", "PROJECT DETAILS"],
-              },
-            ],
+            {
+              label: "PAGES",
+              items: [
+                { label: "ABOUT US", href: "/about" },
+                { label: "OUR TEAM" },
+                { label: "FAQ'S" },
+                { label: "SHOP" },
+                { label: "SHOP DETAILS" },
+              ],
+            },
           ].map((section) => (
             <details key={section.label}>
               <summary className="cursor-pointer">{section.label}</summary>
               <ul className="ml-4 mt-1">
                 {section.items.map((item) => (
-                  <li key={item} className="py-1">
-                    {item}
+                  <li key={item.label} className="py-1">
+                    {item.href ? (
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <span>{item.label}</span>
+                    )}
                   </li>
                 ))}
               </ul>
             </details>
           ))}
+
+          {/* portfolio with links */}
+          <Link href="/service" onClick={() => setMobileOpen(false)}>
+            SERVICE
+          </Link>
+
+          {/* portfolio with links */}
+          <Link href="/portfolio" onClick={() => setMobileOpen(false)}>
+            PORTFOLIO
+          </Link>
 
           {/* BLOG with links */}
           <details>

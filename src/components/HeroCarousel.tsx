@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const slides = [
   {
@@ -71,9 +72,11 @@ const Carousel = () => {
                   <br />
                   {slide.subtitle}
                 </h1>
-                <button className="mt-6 px-6 py-2 bg-white text-blue-900 font-bold rounded">
-                  CONTACT US
-                </button>
+                <Link href="/contact">
+                  <button className="mt-6 px-6 py-2 bg-white text-blue-900 font-bold rounded">
+                    CONTACT US
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
