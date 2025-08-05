@@ -31,3 +31,9 @@ export default function BlogDetailPage({ params }: { params: { id: string } }) {
     </div>
   );
 }
+
+export function generateStaticParams() {
+  return posts.map((post) => ({
+    id: post.id.toString(), // 🔥 string хэлбэрээр буцаах ёстой
+  }));
+}
