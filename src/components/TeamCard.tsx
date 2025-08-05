@@ -1,3 +1,6 @@
+"use client";
+
+import Image from "next/image";
 import { FaFacebookF, FaTwitter, FaPinterestP } from "react-icons/fa";
 
 type TeamMember = {
@@ -9,14 +12,17 @@ type TeamMember = {
 export default function TeamCard({ name, position, imageUrl }: TeamMember) {
   return (
     <div className="w-[270px] shadow-lg rounded overflow-hidden">
-      <div className="relative group">
-        <img
+      <div className="relative group w-full h-[286px]">
+        <Image
           src={imageUrl}
           alt={name}
-          className="w-full h-[286px] object-cover"
+          fill
+          className="object-cover"
+          sizes="270px"
+          priority
         />
         {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-[#334571] bg-opacity-95 flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute inset-0 bg-[#334571] bg-opacity-95 flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
           <div className="flex gap-4 mb-4">
             <a
               href="#"

@@ -42,7 +42,7 @@ export default function Sidebar() {
             />
             <div>
               <p className="text-sm font-medium leading-tight">
-                World don't move to beat of just one drum.
+                World don&apos;t move to beat of just one drum.
               </p>
               <p className="text-xs text-gray-500 mt-1 italic">5 minutes ago</p>
             </div>
@@ -78,7 +78,7 @@ export default function Sidebar() {
             />
             <div>
               <p className="text-sm font-medium leading-tight">
-                World don't move to beat of just one drum.
+                World don&apos;t move to beat of just one drum.
               </p>
               <p className="text-xs text-gray-500 mt-1 italic">1 month ago</p>
             </div>

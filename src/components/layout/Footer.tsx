@@ -1,6 +1,7 @@
 "use client";
 
-import { Mail, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -41,7 +42,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-gray-300">
-                World don't move to beat of just one drum.
+                World don&apos;t move to beat of just one drum.
               </p>
               <p className="text-gray-400 italic mt-1">Mar 20, 2018</p>
             </div>
@@ -95,15 +96,15 @@ export default function Footer() {
             <a href="#about" className="hover:text-white transition">
               About
             </a>
-            <a href="/service" className="hover:text-white transition">
+            <Link href="/service" className="hover:text-white transition">
               Solutions
-            </a>
+            </Link>
             <a href="#faq" className="hover:text-white transition">
               FAQ’s
             </a>
-            <a href="/contact" className="hover:text-white transition">
+            <Link href="/contact" className="hover:text-white transition">
               Contact
-            </a>
+            </Link>
           </div>
         </div>
       </div>
