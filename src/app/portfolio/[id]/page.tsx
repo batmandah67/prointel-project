@@ -1,7 +1,8 @@
+// app/portfolio/[id]/page.tsx
 "use client";
 
 import Image from "next/image";
-import { notFound, useParams } from "next/navigation";
+import { useParams, notFound } from "next/navigation";
 import {
   FaFacebookF,
   FaTwitter,
@@ -12,8 +13,8 @@ import {
 import { portfolioProjects, Project } from "../portfolioData";
 
 export default function ProjectDetailPage() {
-  const params = useParams();
-  const projectId = parseInt(params.id as string); // cast from string | string[] | undefined
+  const { id } = useParams(); // id comes from [id]
+  const projectId = parseInt(id as string);
   const project: Project | undefined = portfolioProjects.find(
     (p) => p.id === projectId
   );
