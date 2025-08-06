@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // app/portfolio/[id]/page.tsx
 import Image from "next/image";
 import { notFound } from "next/navigation";
