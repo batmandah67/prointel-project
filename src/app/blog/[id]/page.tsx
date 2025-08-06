@@ -3,18 +3,19 @@ import Image from "next/image";
 import { posts } from "../blogData";
 import BlogBanner from "../components/BlogBanner";
 
-export default async function BlogDetailPage({
-  params,
-}: {
+type BlogDetailPageProps = {
   params: { id: string };
-}) {
-  // ✅ await ашиглавал алдаа алга болно
-  const { id } = await Promise.resolve(params); // workaround for Vercel types bug
+};
 
-  const postId = Number(id);
+export default function BlogDetailPage({ params }: BlogDetailPageProps) {
+  const postId = Number(params.id);
+  if (isNaN(postId)) {
+    notFound();
+  }
+
   const post = posts.find((p) => p.id === postId);
 
-  if (!post || isNaN(postId)) {
+  if (!post) {
     notFound();
   }
 
@@ -39,7 +40,6 @@ export default async function BlogDetailPage({
   );
 }
 
-// ⬇️ Үе үе гарч ирэх боломжит ID-г Next-д урьдчилж мэдэгдэнэ
 export function generateStaticParams() {
   return posts.map((post) => ({
     id: post.id.toString(),
