@@ -1,9 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-// app/portfolio/[id]/page.tsx
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { portfolioProjects } from "@/app/portfolio/portfolioData";
 import {
   FaFacebookF,
   FaTwitter,
@@ -11,18 +7,19 @@ import {
   FaPinterestP,
   FaGooglePlusG,
 } from "react-icons/fa";
+import { portfolioProjects, Project } from "../portfolioData";
 
-// ✅ Correct prop typing for App Router
 interface PageProps {
   params: {
     id: string;
   };
 }
 
-// ✅ Dynamic route page component
 export default function ProjectDetailPage({ params }: PageProps) {
   const projectId = parseInt(params.id);
-  const project = portfolioProjects.find((p) => p.id === projectId);
+  const project: Project | undefined = portfolioProjects.find(
+    (p) => p.id === projectId
+  );
 
   if (!project) return notFound();
 
@@ -95,7 +92,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
   );
 }
 
-// ✅ SSG support for dynamic routes
+// ✅ Static generation for all projects
 export async function generateStaticParams() {
   return portfolioProjects.map((project) => ({
     id: project.id.toString(),
