@@ -1,8 +1,6 @@
 // app/portfolio/[id]/page.tsx
-"use client";
-
 import Image from "next/image";
-import { useParams, notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import {
   FaFacebookF,
   FaTwitter,
@@ -12,9 +10,12 @@ import {
 } from "react-icons/fa";
 import { portfolioProjects, Project } from "../portfolioData";
 
-export default function ProjectDetailPage() {
-  const { id } = useParams(); // id comes from [id]
-  const projectId = parseInt(id as string);
+interface PageProps {
+  params: { id: string };
+}
+
+export default function ProjectDetailPage({ params }: PageProps) {
+  const projectId = parseInt(params.id);
   const project: Project | undefined = portfolioProjects.find(
     (p) => p.id === projectId
   );
@@ -90,7 +91,6 @@ export default function ProjectDetailPage() {
   );
 }
 
-// ✅ Static generation for all projects
 export async function generateStaticParams() {
   return portfolioProjects.map((project) => ({
     id: project.id.toString(),
