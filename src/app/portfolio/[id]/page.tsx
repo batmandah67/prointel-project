@@ -12,11 +12,15 @@ import {
   FaGooglePlusG,
 } from "react-icons/fa";
 
-interface Props {
-  params: { id: string };
+// ✅ Correct prop typing for App Router
+interface PageProps {
+  params: {
+    id: string;
+  };
 }
 
-export default function ProjectDetailPage({ params }: Props) {
+// ✅ Dynamic route page component
+export default function ProjectDetailPage({ params }: PageProps) {
   const projectId = parseInt(params.id);
   const project = portfolioProjects.find((p) => p.id === projectId);
 
@@ -89,4 +93,11 @@ export default function ProjectDetailPage({ params }: Props) {
       </div>
     </div>
   );
+}
+
+// ✅ SSG support for dynamic routes
+export async function generateStaticParams() {
+  return portfolioProjects.map((project) => ({
+    id: project.id.toString(),
+  }));
 }
