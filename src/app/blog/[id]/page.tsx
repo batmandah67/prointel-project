@@ -4,11 +4,11 @@ import Image from "next/image";
 import { posts } from "../blogData";
 import BlogBanner from "../components/BlogBanner";
 
-interface Props {
+export type PageProps = {
   params: { id: string };
-}
+};
 
-export default function Page({ params }: Props) {
+export default function Page({ params }: PageProps) {
   const postId = Number(params.id);
   if (isNaN(postId)) notFound();
 
@@ -36,6 +36,7 @@ export default function Page({ params }: Props) {
   );
 }
 
+// ✅ For SSG
 export function generateStaticParams() {
   return posts.map((post) => ({
     id: post.id.toString(),
