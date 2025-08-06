@@ -4,14 +4,15 @@ import Image from "next/image";
 import { posts } from "../blogData";
 import BlogBanner from "../components/BlogBanner";
 
-type BlogDetailPageProps = {
+interface Props {
   params: {
     id: string;
   };
-};
+}
 
-export default function BlogDetailPage({ params }: BlogDetailPageProps) {
+export default function Page({ params }: Props) {
   const postId = Number(params.id);
+
   if (isNaN(postId)) notFound();
 
   const post = posts.find((p) => p.id === postId);
@@ -38,6 +39,7 @@ export default function BlogDetailPage({ params }: BlogDetailPageProps) {
   );
 }
 
+// ✅ generateStaticParams for SSG
 export function generateStaticParams() {
   return posts.map((post) => ({
     id: post.id.toString(),
