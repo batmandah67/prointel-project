@@ -9,15 +9,10 @@ type BlogDetailPageProps = {
 
 export default function BlogDetailPage({ params }: BlogDetailPageProps) {
   const postId = Number(params.id);
-  if (isNaN(postId)) {
-    notFound();
-  }
+  if (isNaN(postId)) notFound();
 
   const post = posts.find((p) => p.id === postId);
-
-  if (!post) {
-    notFound();
-  }
+  if (!post) notFound();
 
   return (
     <div>
