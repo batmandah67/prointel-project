@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { portfolioProjects } from "@/app/portfolio/portfolioData";
