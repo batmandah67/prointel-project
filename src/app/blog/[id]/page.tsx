@@ -5,14 +5,11 @@ import { posts } from "../blogData";
 import BlogBanner from "../components/BlogBanner";
 
 interface Props {
-  params: {
-    id: string;
-  };
+  params: { id: string };
 }
 
 export default function Page({ params }: Props) {
   const postId = Number(params.id);
-
   if (isNaN(postId)) notFound();
 
   const post = posts.find((p) => p.id === postId);
@@ -39,7 +36,6 @@ export default function Page({ params }: Props) {
   );
 }
 
-// ✅ generateStaticParams for SSG
 export function generateStaticParams() {
   return posts.map((post) => ({
     id: post.id.toString(),
