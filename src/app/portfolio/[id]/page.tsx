@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { portfolioProjects } from "@/app/portfolio/portfolioData";
@@ -11,22 +10,25 @@ import {
   FaGooglePlusG,
 } from "react-icons/fa";
 
-// Pre-generate static params for all project IDs
-export async function generateStaticParams() {
+// ✅ Pre-render all possible portfolio IDs
+export function generateStaticParams() {
   return portfolioProjects.map((project) => ({
     id: project.id.toString(),
   }));
 }
 
-// Async page component with correctly typed props inline
+// ✅ Fix: await params properly like blog/[id]/page.tsx
 export default async function ProjectDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const projectId = parseInt(params.id);
-  const project = portfolioProjects.find((p) => p.id === projectId);
+  const { id } = await params;
 
+  const projectId = parseInt(id);
+  if (isNaN(projectId)) return notFound();
+
+  const project = portfolioProjects.find((p) => p.id === projectId);
   if (!project) return notFound();
 
   return (
@@ -63,6 +65,7 @@ export default async function ProjectDetailPage({
           <p className="text-gray-700 text-base leading-relaxed">
             {project.description}
           </p>
+
           <div className="grid grid-cols-2 gap-y-4 text-sm text-gray-800 pt-4">
             <div>
               <span className="font-semibold">Client :</span>
