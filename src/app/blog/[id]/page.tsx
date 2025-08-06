@@ -1,16 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { posts } from "../blogData";
 import BlogBanner from "../components/BlogBanner";
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>; // ⬅️ хамгийн чухал өөрчлөлт!
 }
 
 export default async function Page({ params }: PageProps) {
-  // ✅ await ашиглах шаардлагатай Next.js 14 runtime-д
-  const { id } = await Promise.resolve(params);
+  const { id } = await params; // ⬅️ Vercel дээр зөвхөн ингэж await хийвэл ажилладаг
 
   const postId = Number(id);
   if (isNaN(postId)) notFound();
