@@ -9,17 +9,19 @@ import {
   FaGooglePlusG,
 } from "react-icons/fa";
 
-interface PageProps {
-  params: { id: string };
-}
-
+// Pre-generate static params for all project IDs
 export async function generateStaticParams() {
   return portfolioProjects.map((project) => ({
     id: project.id.toString(),
   }));
 }
 
-export default async function ProjectDetailPage({ params }: PageProps) {
+// Async page component with correctly typed props inline
+export default async function ProjectDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const projectId = parseInt(params.id);
   const project = portfolioProjects.find((p) => p.id === projectId);
 
