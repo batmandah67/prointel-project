@@ -4,12 +4,15 @@ import Image from "next/image";
 import { posts } from "../blogData";
 import BlogBanner from "../components/BlogBanner";
 
-export type PageProps = {
+interface PageProps {
   params: { id: string };
-};
+}
 
-export default function Page({ params }: PageProps) {
-  const postId = Number(params.id);
+export default async function Page({ params }: PageProps) {
+  // ✅ await ашиглах шаардлагатай Next.js 14 runtime-д
+  const { id } = await Promise.resolve(params);
+
+  const postId = Number(id);
   if (isNaN(postId)) notFound();
 
   const post = posts.find((p) => p.id === postId);
@@ -36,7 +39,6 @@ export default function Page({ params }: PageProps) {
   );
 }
 
-// ✅ For SSG
 export function generateStaticParams() {
   return posts.map((post) => ({
     id: post.id.toString(),
