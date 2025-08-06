@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import {
   FaFacebookF,
   FaTwitter,
@@ -9,14 +11,9 @@ import {
 } from "react-icons/fa";
 import { portfolioProjects, Project } from "../portfolioData";
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function ProjectDetailPage({ params }: PageProps) {
-  const projectId = parseInt(params.id);
+export default function ProjectDetailPage() {
+  const params = useParams();
+  const projectId = parseInt(params.id as string); // cast from string | string[] | undefined
   const project: Project | undefined = portfolioProjects.find(
     (p) => p.id === projectId
   );
